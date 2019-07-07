@@ -26,9 +26,8 @@ public class JwtService {
 
     @PostConstruct
     protected void init() {
-        if (StringUtils.isEmpty(plainSecret)) {
+        if (StringUtils.isEmpty(plainSecret))
             throw new IllegalArgumentException("JWT secret cannot be null or empty.");
-        }
 
         this.encodedSecret = Base64
                 .getEncoder()
@@ -61,7 +60,7 @@ public class JwtService {
         return Jwts.builder()
                 .setId(UUID.randomUUID().toString())
                 .claim("username", jwtUser.getUsername())
-                .claim("password", jwtUser.getPassword()) //should be hashed
+                .claim("password", jwtUser.getPassword()) //TODO hash pass
                 .setIssuedAt(now)
                 .setExpiration(getExpirationTime())
                 .signWith(SignatureAlgorithm.HS512, encodedSecret)

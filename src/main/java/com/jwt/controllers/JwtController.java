@@ -25,7 +25,7 @@ public class JwtController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/public/auth")
+    @PostMapping(value = "/auth")
     public ResponseEntity<String> auth(@RequestBody JwtUser jwtUser) {
         String userName = jwtUser.getUsername();
         String passWord = jwtUser.getPassword();
